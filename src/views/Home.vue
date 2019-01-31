@@ -1,0 +1,102 @@
+<template>
+  <div id="home">
+
+    <div class="nav-menu">
+      <div class="nav-left">
+      </div>
+      <div class="nav-center">
+        <el-menu
+          default-active="task"
+          class="el-menu-demo"
+          mode="horizontal"
+          @select="handleSelect"
+          background-color="#fff"
+          text-color="#2d2f33"
+          active-text-color="#ffd04b"
+          router
+        >
+          <el-menu-item v-for="(item,index) in homeChildren" :index="item.path" :key='index'><span :class="item.icon" :key='item.path'></span>{{item.title}}</el-menu-item>
+        </el-menu>
+      </div>
+      <div class="nav-right"></div>
+    </div>
+    <router-view></router-view>
+  </div>
+</template>
+
+<script lang="ts">
+//  background-color="#727a9e91"
+import { Component, Vue } from "vue-property-decorator";
+import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+import About from "./About.vue";
+import Login from "./Login.vue";
+import Routes from '../router/routes';
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
+export default Vue.extend({
+  data() {
+    return {
+      homeChildren:[]
+    };
+  },
+
+  async created() {
+       this.renderNavMenu();
+       (this as any).getAllUser();
+       this.$router.push("/task")
+  },
+
+  methods: {
+    // changeItem(e: any) {
+    //   //获取vue中DOM上的自定义属性值
+    //   this.tabCurrentComponent = e.target.getAttribute("val");
+    // },
+    handleSelect(key: any, keyPath: any) {
+      console.log(key, keyPath);
+    },
+   
+    renderNavMenu(){
+        interface arrayIndex{
+            [index:number]:object
+        }
+        const routes:arrayIndex=Routes.routes;
+        if(((routes[0])as any).children.length==0) return ;
+        this.homeChildren =((routes[0])as any).children; 
+    },
+    //传参类型必须酱紫，否则类型报错
+    ...mapActions(["getAllUser"])
+    
+
+  },
+  components: {
+    About,
+    Login
+  }
+});
+</script>
+<style lang="scss">
+     #home{
+       width: 100%;
+       height: 100%;
+ 
+        .nav-menu{
+          position: absolute;
+
+          display: flex;
+            .nav-left{
+                width: 239px;   
+                height: 61px;
+                // background-color: #545c64;
+                background-size: 100% 100%;
+                background-image: url("../assets/images/logo-main-dark.png");
+                border-bottom: solid 1px #e6e6e6;
+            }
+            .nav-center{
+               flex:1
+            }
+            .nav-right{
+              
+            }
+        }
+     }
+</style>
+
