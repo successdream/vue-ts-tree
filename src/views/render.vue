@@ -1,5 +1,5 @@
 <template>
-  <div style="position:absolute;top:60px;bottom:0px;">
+  <div style="position:absolute;top:60px;bottom:0px;width:100%">
     <div style='display:flex;padding-left:30px'>
       <span style='width:33.3%; '>name</span>
       <span style='width:33.3%'>ID</span>
