@@ -29,21 +29,21 @@ export default class Resource extends Vue {
   // }
   // mounted() {
   //   const renderDOM = this.$refs.content;
-  //   // this.renderDOM(renderDOM, this.renderData, 3, false, 1);
-  //   // const expandDOM = document.getElementsByClassName("list");
-  //   // for (var i = 0; i < expandDOM.length; i++) {
-  //   //   expandDOM[i].addEventListener("click", this.expandrowchild);
-  //   // }
-  //   // //拖动处理
-  //   // const spbox = document.getElementsByClassName("spbox");
-  //   // for (var i = 0; i < spbox.length; i++) {
-  //   //   spbox[i].addEventListener("dragstart", this.dragStartSet);
-  //   // }
-  //   // const lists = document.getElementsByClassName("spbox");
-  //   // for (var i = 0; i < lists.length; i++) {
-  //   //   lists[i].addEventListener("dragover", this.dragoverSet);
-  //   //   lists[i].addEventListener("drop", this.dragDropSet);
-  //   // }
+    // this.renderDOM(renderDOM, this.renderData, 3, false, 1);
+    // const expandDOM = document.getElementsByClassName("list");
+    // for (var i = 0; i < expandDOM.length; i++) {
+    //   expandDOM[i].addEventListener("click", this.expandrowchild);
+    // }
+    // //拖动处理
+    // const spbox = document.getElementsByClassName("spbox");
+    // for (var i = 0; i < spbox.length; i++) {
+    //   spbox[i].addEventListener("dragstart", this.dragStartSet);
+    // }
+    // const lists = document.getElementsByClassName("spbox");
+    // for (var i = 0; i < lists.length; i++) {
+    //   lists[i].addEventListener("dragover", this.dragoverSet);
+    //   lists[i].addEventListener("drop", this.dragDropSet);
+    // }
   // }
   // firstData() {
   //   const data = this.data;

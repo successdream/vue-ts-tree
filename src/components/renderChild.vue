@@ -1,8 +1,8 @@
 <template>
   <div>
     <div  v-for="(item,index) in data" :key="index" style='padding-left:25px' v-show='item.parentId===currentParentId'>
-      <div style="position:relative;" @click="expandIt($event,item.Id)" :key='item.Id'  :currentid='item.Id'>
-        <div  style="display:flex;flex-wrap:wrap;padding:5px 0px 5px 25px;">
+      <div :dropId='item.Id' @dragover='dragoverSet' @drop='dragDropSet' style="position:relative;" @click="expandIt($event,item.Id)" :key='item.Id'  :currentid='item.Id'>
+        <div  @dragstart='dragStartSet' :dragId='item.Id' :draggable='true'  style="display:flex;flex-wrap:wrap;padding:5px 0px 5px 25px;">
           <div ref='triangle' :class='{triangle:true,"rotate-90-deg": item.Id == currentIds[item.Id]}' v-if ="item.children"></div>
           <span style="flex:1">{{item.name}}</span>
           <span style="flex:1">{{item.Id}}</span>
@@ -16,20 +16,29 @@
   </div>
 </template>
 <script lang = 'ts'>
-import { Component, Vue, Prop, Watch } from "vue-property-decorator";
+import { Component, Vue, Prop, Watch, Inject, Provide  } from "vue-property-decorator";
+import brother from '../../api/brother';
 @Component({
   components: {}
 })
 export default class renderChild extends Vue {
+  //整理数据
+  @Prop({default:() =>{return []}})data: any;
+  //提供数据
+  @Inject() foo!: string
+  @Watch('data',{deep:true})
+  dataChange(val:any){
+    console.log(val);
+    this.data = val;
+  }
   getParentID(){
     this.currentParentId =(this.$parent as any).currentId;
   }
   mounted(){
     this.getParentID();
     this.renderParentID();
+    console.log( brother );
   }
-  //整理数据
-  @Prop({default:() =>{return []}})data: any;
   name = "renderChild";
   rotate = false;
 
@@ -40,6 +49,9 @@ export default class renderChild extends Vue {
   currentParentId:number = -2;
   renderID:any = -3;
   closeAll = true;
+  deleteDrag:boolean = true;
+  addDrag:boolean = true;
+
   isHasChildren(item: any = '') {
     if (item.children && item.children.length !== 0) {
       return true;
@@ -75,6 +87,29 @@ export default class renderChild extends Vue {
       }
     }
   }
+  //开始拖动
+  dragStartSet(e: any) {
+    const ids = e.target.getAttribute("dragId");
+    e.dataTransfer.setData("text/html", ids);
+  }
+  dragoverSet(e: any) {
+    e = e || event;
+    // 阻止浏览器默认事件
+    e.preventDefault();
+  }
+  dragDropSet(e: any) {
+    e = e || event;
+    e.preventDefault();
+    const dragIds = e.dataTransfer.getData("text/html");
+    const dropTargetIds = e.currentTarget.getAttribute("dropId");
+    brother.$emit('ids',dragIds+','+dropTargetIds);
+    // const datas = this.mapDataForId(dragIds, dropTargetIds);
+
+    // this.deleteDrag = datas.dragIdsData;
+    // this.addDrag = datas.dropTargetIdsData;
+    
+  }
+
 
 }
 </script>
