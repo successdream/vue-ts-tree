@@ -7,11 +7,6 @@ import store from './store'
 import axios,{ AxiosInstance } from 'axios';
 
 
-declare module 'vue/types/vue' {
-  interface Vue {
-    $axios: AxiosInstance
-  }
-}
 Vue.prototype.$axios=axios;
 
 

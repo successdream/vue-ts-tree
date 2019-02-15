@@ -85,6 +85,7 @@ export default class RegisterList extends Vue {
     }
     if(!validateForm) return;
     try{
+      
       let data= await this.$axios.post('/user/user/', this.registerList.params);
       if(data.status==200){
         console.log(data)

@@ -7,6 +7,8 @@ import Comprehensive from  '../views/Comprehensive.vue';
 import Resource from  '../views/Resource.vue';
 import Render from  '../views/render.vue';
 import Tree from  '../views/tree.vue';
+import renderJsx from  '../views/renderJsx.vue';
+
 
 
 
@@ -23,11 +25,14 @@ export default{
           children:[
             {path:'task',component:Task,name:'task',title:'任务',icon:'iconfont icon-ziyouanpai'},
             {path:'user',component:User,name:'user',title:'用户',icon:'iconfont icon-tupian'},
-            {path:'comprehensive',component:Comprehensive,name:'task',title:'任务',icon:'iconfont icon-geren'},
+            {path:'comprehensive',component:Comprehensive,name:'task',title:'任务',icon:'iconfont icon-zhinengyouhua'},
             // {path:'resource',component:Resource,name:'resource',title:'资源',icon:'iconfont icon-zhinengyouhua'},
             {path: '/render',component: Render, name: 'render',title:'渲染', icon:'iconfont icon-zhinengyouhua'},
             // {path: '/tree',component: Tree, name: 'tree',title:'树形', icon:'iconfont icon-zhinengyouhua'},
+            {path: '/render1',component: renderJsx, name: 'renderjsx',title:'渲染', icon:'iconfont icon-tupian'},
+            {path: '/resource',component: Resource, name: 'resource',title:'资源', icon:'iconfont icon-tupian'},
 
+            
           ]
         },
         {

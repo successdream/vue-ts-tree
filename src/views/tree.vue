@@ -18,12 +18,13 @@ import treeChild from "@/components/treeMenus1.vue";
 })
 export default class tree extends Vue {
    ids = 123
-   created(){
-  
-   }
+   
    mounted(){
-        const child = this.$children;
-     console.log(child)
+    const child = this.$children;
+    console.log(child)
+   }
+   typeTest(){
+    
    }
 }
 </script>

@@ -8,22 +8,25 @@
       </div>
       <div ref="content" class="content"></div> 
     </div>
+    <button @click='hello'>hello,你好</button>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Mixins } from "vue-property-decorator";
 import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
 import ResourceChild from "@/components/ResourceChild.vue";
 import buttons from "@/components/button.vue";
-
+import {MyMixin} from '../../api/mixinMethod'
 @Component({
   components: {
     ResourceChild,
     buttons
-  }
+  },
+  mixins:[MyMixin]
 })
-export default class Resource extends Vue {
+
+export default class Resource extends  Mixins(MyMixin){
   data = [
     { id: 1, name: "办公管理", pid: 0 },
     { id: 2, name: "请假申请", pid: 1 },

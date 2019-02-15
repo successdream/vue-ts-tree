@@ -13,7 +13,7 @@
 
 <script lang="ts">
 //  background-color="#727a9e91"
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Mixins } from "vue-property-decorator";
 import hotkeys from "hotkeys-js";
 import userslot from "@/components/UserSlot.vue";
 const uuidv4 = require("uuid/v4");

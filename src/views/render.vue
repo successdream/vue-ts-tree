@@ -56,6 +56,7 @@ export default class renders extends Vue {
       this.dragId = arr[0];
       this.dropTargetIds = arr[1];
     })
+    console.dir(window)
   }
   firstData() {
     const data = this.tabledata;

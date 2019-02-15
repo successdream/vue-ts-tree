@@ -10,16 +10,16 @@ let router=new Router ({
   ...routes
 })
 
-// router.beforeEach((to,from,next)=>{
+router.beforeEach((to,from,next)=>{
    
-//   let auth = axios.defaults.headers.common.Authorization;
+  let auth = axios.defaults.headers.common.Authorization;
 
-//    if( !auth && to.path!=='/login'){
-//       next({path:'/login'})
-//    }else{
-//        next();
-//    }
+   if( !auth && to.path!=='/login'){
+      next({path:'/login'})
+   }else{
+       next();
+   }
     
-// })
+})
 
 export default router
