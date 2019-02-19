@@ -132,7 +132,9 @@ export default class tree extends Vue {
 #tree {
   .fool {
     width: 200px;
- 
+    padding-top:5px;
+    padding-bottom:5px;
+    border:1px solid #ccc;
   }
 
   .tree-icon {
@@ -143,6 +145,7 @@ export default class tree extends Vue {
     height: 20px;
     display: inline-block;
     vertical-align:middle;
+    margin-left: 5px;
   }
   .icon-pic-close {
     background-image: url("../../public/images/right-circle-fill.svg");
@@ -157,11 +160,8 @@ export default class tree extends Vue {
   }
   .fool-content{
     padding-left:20px;
-    // border:1px solid #ccc;
     width: 200px;
     display: inline-block;
-    padding-top:5px;
-    padding-bottom:5px;
   }
   .el-tree-node__content{
     height: 40px !important;
