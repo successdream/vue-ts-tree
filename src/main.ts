@@ -21,14 +21,7 @@ import moment from 'moment';
 import './assets/style/base.scss';
 import './assets/icon/iconfont/iconfont.css';
 
-
-
-
-
-
-
 Vue.config.productionTip = false;
-
 
 new Vue({
   router,
