@@ -18,6 +18,8 @@ Vue.use(ElementUI);
 import moment from 'moment';
 (window as any).moment=moment;
 
+import 'animate.css'
+
 import './assets/style/base.scss';
 import './assets/icon/iconfont/iconfont.css';
 

@@ -30,7 +30,6 @@
 </style>
 <script lang = 'ts'>
 import { Component, Vue, Inject, Provide, Watch } from "vue-property-decorator";
-import $ from 'jquery';
 @Component({})
 export default class Nestable extends Vue {
   created(){

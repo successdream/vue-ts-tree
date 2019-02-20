@@ -10,6 +10,7 @@
   "dependencies": {
     "@types/lodash": "^4.14.121",
     "@types/qs": "^6.5.1",
+    "animate.css": "^3.7.0",
     "hotkeys-js": "^3.4.3",
     "lodash": "^4.17.11",
     "uuid-v4": "^0.1.0",

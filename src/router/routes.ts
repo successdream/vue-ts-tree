@@ -29,7 +29,7 @@ export default{
             // {path:'resource',component:Resource,name:'resource',title:'资源',icon:'iconfont icon-zhinengyouhua'},
             {path: '/render',component: Render, name: 'render',title:'渲染', icon:'iconfont icon-zhinengyouhua'},
             {path: '/tree',component: Tree, name: 'tree',title:'树形', icon:'iconfont icon-zhinengyouhua'},
-            {path: '/render1',component: renderJsx, name: 'renderjsx',title:'渲染', icon:'iconfont icon-tupian'},
+            {path: '/render1',component: renderJsx, name: 'renderjsx',title:'renderJSX', icon:'iconfont icon-tupian'},
             {path: '/resource',component: Resource, name: 'resource',title:'资源', icon:'iconfont icon-tupian'},
 
             

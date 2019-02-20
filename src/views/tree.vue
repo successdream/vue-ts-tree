@@ -4,12 +4,17 @@
     <br>
     <br>
     <el-tree
+      default-expand-all
       :data="data"
+      node-key="id"
       :props="defaultProps"
-      @node-click="handleNodeClick"
       :render-content="renderTreeNode"
       @node-expand="expandNode"
       @node-collapse="expandCollapse"
+      @node-drop='dragComplete'
+      @node-drag-over='dragOver'
+      draggable
+      @allow-drop='allowDrop'
     ></el-tree>
   </div>
 </template>
@@ -22,55 +27,62 @@ import { Component, Vue } from "vue-property-decorator";
 export default class tree extends Vue {
   data = [
     {
+      id: 1,
       label: "一级 1",
       children: [
         {
+          id: 4,
           label: "二级 1-1",
           children: [
             {
+              id: 9,
               label: "三级 1-1-1"
+            },
+            {
+              id: 10,
+              label: "三级 1-1-2"
             }
           ]
         }
       ]
     },
     {
+      id: 2,
       label: "一级 2",
       children: [
         {
-          label: "二级 2-1",
-          children: [
-            {
-              label: "三级 2-1-1"
-            }
-          ]
+          id: 5,
+          label: "二级 2-1"
         },
         {
-          label: "二级 2-2",
-          children: [
-            {
-              label: "三级 2-2-1"
-            }
-          ]
+          id: 6,
+          label: "二级 2-2"
         }
       ]
     },
     {
+      id: 3,
       label: "一级 3",
       children: [
         {
-          label: "二级 3-1",
-          children: [
-            {
-              label: "三级 3-1-1"
-            }
-          ]
+          id: 7,
+          label: "二级 3-1"
         },
         {
+          id: 8,
           label: "二级 3-2",
           children: [
             {
+              id: 11,
               label: "三级 3-2-1"
+            },
+            {
+              id: 12,
+              label: "三级 3-2-2"
+            },
+            {
+              id: 13,
+              label: "三级 3-2-3"
             }
           ]
         }
@@ -95,11 +107,34 @@ export default class tree extends Vue {
           }}
           ref="icon"
         />
-        <span class='fool-content'>{data.label}</span>
+        <span class="fool-content">{data.label}</span>
       </div>
     );
   }
-  handleNodeClick() {}
+  handleDragStart(node, ev) {
+    console.log("drag start", node);
+  }
+  handleDragEnter(draggingNode, dropNode, ev) {
+    console.log("tree drag enter: ", dropNode.label);
+  }
+  handleDragLeave(draggingNode, dropNode, ev) {
+    console.log("tree drag leave: ", dropNode.label);
+  }
+  handleDragOver(draggingNode, dropNode, ev) {
+    console.log("tree drag over: ", dropNode.label);
+  }
+  handleDragEnd(draggingNode, dropNode, dropType, ev) {
+    console.log("tree drag end: ", dropNode && dropNode.label, dropType);
+  }
+  handleDrop(draggingNode, dropNode, dropType, ev) {
+    console.log("tree drop: ", dropNode.label, dropType);
+  }
+  allowDrop(draggingNode, dropNode, type) {
+    
+  }
+  allowDrag(draggingNode) {
+    return draggingNode.data.label.indexOf("三级 3-2-2") === -1;
+  }
   expandNode(data, node, item) {
     const iconHtml = item.$children[0].$el.children[0];
     if (iconHtml.classList.contains("icon-pic-close")) {
@@ -120,23 +155,27 @@ export default class tree extends Vue {
       iconHtml.classList.add("icon-pic-close");
     }
   }
+  //只打开某个节点
+  dragComplete(isDragNode,dragNode,position){
+    
+  }
+  dragOver(isDragNode,Node,event){
+    console.log(isDragNode,Node,event)
+  }
 }
 </script>
 <style lang='scss'>
-#tree {
-  
-}
+
 </style>
 
-<style lang='scss' >
+<style lang='scss' scoped>
 #tree {
   .fool {
     width: 200px;
-    padding-top:5px;
-    padding-bottom:5px;
-    border:1px solid #ccc;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid #ccc;
   }
-
   .tree-icon {
     display: inline-block;
   }
@@ -144,26 +183,26 @@ export default class tree extends Vue {
     width: 20px;
     height: 20px;
     display: inline-block;
-    vertical-align:middle;
+    vertical-align: middle;
     margin-left: 5px;
   }
   .icon-pic-close {
-    background-image: url("../../public/images/right-circle-fill.svg");
+    background-image: url("../../public/images/down-circle-fill.svg");
     background-size: cover;
   }
   .icon-pic-open {
-    background-image: url("../../public/images/down-circle-fill.svg");
+    background-image: url("../../public/images/right-circle-fill.svg");
     background-size: cover;
   }
   .el-icon-caret-right:before {
     content: "" !important;
   }
-  .fool-content{
-    padding-left:20px;
+  .fool-content {
+    padding-left: 20px;
     width: 200px;
     display: inline-block;
   }
-  .el-tree-node__content{
+  .el-tree-node__content {
     height: 40px !important;
   }
 }
