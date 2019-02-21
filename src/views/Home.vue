@@ -26,6 +26,7 @@
 
 <script lang="ts">
 //  background-color="#727a9e91"
+
 import { Component, Vue } from "vue-property-decorator";
 import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
 import About from "./About.vue";
@@ -33,6 +34,7 @@ import Login from "./Login.vue";
 import Routes from '../router/routes';
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
 export default Vue.extend({
+   
   data() {
     return {
       homeChildren:[]
@@ -46,10 +48,6 @@ export default Vue.extend({
   },
 
   methods: {
-    // changeItem(e: any) {
-    //   //获取vue中DOM上的自定义属性值
-    //   this.tabCurrentComponent = e.target.getAttribute("val");
-    // },
     handleSelect(key: any, keyPath: any) {
       console.log(key, keyPath);
     },
@@ -83,11 +81,11 @@ export default Vue.extend({
 
           display: flex;
             .nav-left{
-                width: 239px;   
-                height: 61px;
-                // background-color: #545c64;
-                background-size: 100% 100%;
-                border-bottom: solid 1px #e6e6e6;
+              width: 239px;   
+              height: 61px;
+              // background-color: #545c64;
+              background-size: 100% 100%;
+              border-bottom: solid 1px #e6e6e6;
             }
             .nav-center{
                flex:1

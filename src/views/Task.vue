@@ -79,6 +79,8 @@ export default Vue.extend({
   components:{
      GoingTask
   },
+  created(){
+  },
   methods: {
     toggleSelection(rows: any) {
       if (rows) {

@@ -15,6 +15,7 @@
       @node-drag-over='dragOver'
       draggable
       @allow-drop='allowDrop'
+      v-if='show'
     ></el-tree>
   </div>
 </template>
@@ -93,7 +94,8 @@ export default class tree extends Vue {
     children: "children",
     label: "label"
   };
-
+  show = true;
+  iconHtml = null
   mounted() {
     const child = this.$children;
   }
@@ -102,8 +104,8 @@ export default class tree extends Vue {
       <div class="fool">
         <span
           class={{
-            icon: data.children && data.children.length,
-            "icon-pic-close": true
+             icon: data.children && data.children.length,
+            "icon-pic-close": true,
           }}
           ref="icon"
         />
@@ -157,7 +159,8 @@ export default class tree extends Vue {
   }
   //只打开某个节点
   dragComplete(isDragNode,dragNode,position){
-    
+    //当vue数据层次过深，但是数据已经更新DOM没有跟新的时候，可用slice方法，重新赋值一个数组
+    this.data =this.data.slice(0);
   }
   dragOver(isDragNode,Node,event){
     console.log(isDragNode,Node,event)
@@ -168,7 +171,7 @@ export default class tree extends Vue {
 
 </style>
 
-<style lang='scss' scoped>
+<style lang='scss' >
 #tree {
   .fool {
     width: 200px;

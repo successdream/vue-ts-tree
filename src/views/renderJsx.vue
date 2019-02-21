@@ -7,18 +7,35 @@
     <h1 class="animated infinite bounce ">Example</h1>
     <transition>
    
-        <div>
+        <div  v-tack:left='300'>
           <p>我被当作了子模快</p>
         </div>
 
     </transition>
     <button @click="closeOrOpen" out-in>{{val}}</button>
+    <input v-focus>
   </div>
 </template>
 
 <script>
 import { Component, Vue, Inject, Provide, Watch } from "vue-property-decorator";
 import renderJsxChild from "@/components/renderJsxChild.vue";
+Vue.directive('tack',{
+  //binding.arg是bind后面的:加的参数
+  //binding.value是bind后面的值
+  bind(el,binding,vnode){
+    el.style.position='fixed';
+    const s = (binding.arg == 'left'? 'left':'top')
+    el.style[s]=binding.value+'px';
+  }
+})
+Vue.directive('focus', {
+  // 当被绑定的元素插入到 DOM 中时……
+  inserted: function (el) {
+    // 聚焦元素
+    el.focus()
+  }
+})
 @Component({
   components: {
     renderJsxChild
