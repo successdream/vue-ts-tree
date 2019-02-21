@@ -87,7 +87,6 @@ export default Vue.extend({
                 height: 61px;
                 // background-color: #545c64;
                 background-size: 100% 100%;
-                background-image: url("../assets/images/logo-main-dark.png");
                 border-bottom: solid 1px #e6e6e6;
             }
             .nav-center{

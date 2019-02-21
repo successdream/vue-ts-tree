@@ -1,8 +1,6 @@
 <template>
   <div class="ecv-flex" v-loading.fullscreen.lock="fullscreenLoading" id="login">
     <div class="ecv-login-table" @keyup.enter="loginSubmit">
-      <img src="../assets/images/logo-main-dark.png" style="width: 300px; height: auto;">
-      <div class="title">图像标注管理系统</div>
       <el-tabs v-model="activeTab" style="height: auto;">
         <el-tab-pane label="登录" name="login" style="display: flex;">
           <el-form :model="params.login"  ref="login" label-width="80px" inline>
