@@ -19,6 +19,7 @@ declare global {
       //typeof moment挺有意思啊！类型不报错了
       moment:typeof moment
   }
+  let axios:AxiosInstance
 }
 
 declare module 'vue/types/vue' {

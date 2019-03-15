@@ -45,6 +45,7 @@ export default Vue.extend({
        this.renderNavMenu();
        (this as any).getAllUser();
        this.$router.push("/task")
+       axios.get('abcdefg');
   },
 
   methods: {
