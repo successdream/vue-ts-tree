@@ -2,12 +2,14 @@ import Home from   '../views/Home.vue';
 import Login from  '../views/Login.vue';
 import About from  '../views/About.vue';
 import Task from  '../views/Task.vue';
-import User from  '../views/User.vue';
+import User from  '../views/User/User.vue';
 import Comprehensive from  '../views/Comprehensive.vue';
 import Resource from  '../views/Resource.vue';
 import Render from  '../views/render.vue';
 import Tree from  '../views/tree.vue';
 import renderJsx from  '../views/renderJsx.vue';
+import vueRouter from  '../views/VueRouterTest.vue';
+
 
 
 
@@ -31,7 +33,7 @@ export default{
             {path: '/tree',component: Tree, name: 'tree',title:'树形', icon:'iconfont icon-zhinengyouhua'},
             {path: '/render1',component: renderJsx, name: 'renderjsx',title:'renderJSX', icon:'iconfont icon-tupian'},
             {path: '/resource',component: Resource, name: 'resource',title:'资源', icon:'iconfont icon-tupian'},
-
+            {path: '/vueRouter',component: vueRouter, name: 'resource',title:'图片', icon:'iconfont icon-tupian'}
             
           ]
         },

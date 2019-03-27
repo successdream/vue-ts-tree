@@ -1,21 +1,19 @@
 <template>
-  <div id="User" style="position:absolute;top:80px">我是用户列表
-    <userslot>
-      <div>21111321</div>
-       <div slot="header">我是 头部</div>
-       
-       <div slot="main">我是 主题</div>
-       <div slot="footer">我是尾部</div>
-    </userslot>
-    
+  <div id="User" style="position:absolute;top:80px">
+     <div class="display:flex;">
+       <span>我是UserSlot组件</span>
+       <span>我是UserCHild组件</span>
+       <!-- <component></component> -->
+     </div>
   </div>
 </template>
 
 <script lang="ts">
-//  background-color="#727a9e91"
+
 import { Component, Vue, Mixins } from "vue-property-decorator";
 import hotkeys from "hotkeys-js";
-import userslot from "@/components/UserSlot.vue";
+// import UserSlot from "./UserSlot.vue";
+// import UserChiild from "./UserChiild.vue";
 const uuidv4 = require("uuid/v4");
 export default Vue.extend({
   data() {
@@ -36,7 +34,6 @@ export default Vue.extend({
   },
   methods: {},
   components: {
-    userslot
   },
   //必须以空格间隔
   beforeDestroy() {
