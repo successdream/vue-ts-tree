@@ -55,3 +55,43 @@
 //=======================================start=======================================
 var reg = new RegExp("[\\u4E00-\\u9FFF]+","g");
 //=======================================end=========================================
+//递归找到两个距离最相近的矩形，利用变量提升的原理
+//========================================start=======================================
+private addRectObj(objs, obj) {
+  function getTwoPointDistance (rect1, rect2) {
+    //两个矩形中点的位置
+    const rect1Center = { x: rect1.xmin + rect1.width / 2, y: rect1.ymin + rect1.height / 2 };
+    const rect2Center = { x: rect2.xmin + rect2.width / 2, y: rect1.ymin + rect1.height / 2 };
+    //保证是正数
+    return Math.sqrt(Math.pow((rect1Center.x - rect2Center.x), 2 ) + Math.pow((rect1Center.y - rect2Center.y), 2 ));
+  }
+
+  let indexOfMInValue = objs.length - 1;
+  let minValue = Number.MAX_SAFE_INTEGER;
+  let isAddToChildren = false;
+  
+  function isInside(rect1, rect2) {
+    //判断矩形框rect2是否处于rect1内
+    return rect2.xmin > rect1.xmin 
+        && rect2.ymin > rect1.ymin 
+        && rect2.xmin + rect2.width < rect1.xmin + rect1.width 
+        && rect2.ymin + rect2.height < rect1.ymin + rect1.height;
+  }
+  //由内向外比较距离最近的两个矩形，利用js的变量提升原理
+  objs.forEach((item, index) => {
+    if(item.type === 'RECT'){
+      if(item.children && item.children.length > 0 && isInside( item.data, obj.data )){
+        isAddToChildren = true;
+        this.addRectObj(item.children, obj);
+      }
+      const value = getTwoPointDistance(item.data, obj.data);
+      if ( value < minValue) {
+        minValue = value;
+        indexOfMInValue = index;
+      };
+    }
+  });
+  if(!isAddToChildren) objs.splice(indexOfMInValue + 1, 0, obj);
+  return objs;
+};
+//==========================================end=================================================
