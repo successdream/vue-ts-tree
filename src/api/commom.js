@@ -95,3 +95,138 @@ private addRectObj(objs, obj) {
   return objs;
 };
 //==========================================end=================================================
+//==========================================tree处理数据=========================================
+data = [
+  {
+    id: 1,
+    label: "一级 1",
+    parentId: null,
+    children: [
+      {
+        id: 4,
+        label: "二级 1-1",
+        parentId: 1,
+        children: [
+          {
+            id: 9,
+            label: "三级 1-1-1",
+            parentId: 4
+          },
+          {
+            id: 10,
+            parentId: 4,
+            label: "三级 1-1-2"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 2,
+    label: "一级 2",
+    parentId: null,
+    children: [
+      {
+        id: 5,
+        label: "二级 2-1",
+        parentId: 2,
+      },
+      {
+        id: 6,
+        label: "二级 2-2",
+        parentId: 2,
+      }
+    ]
+  },
+  {
+    id: 3,
+    label: "一级 3",
+    parentId: null,
+    children: [
+      {
+        id: 7,
+        label: "二级 3-1",
+        parentId: 3,
+      },
+      {
+        id: 8,
+        label: "二级 3-2",
+        parentId: 3,
+        children: [
+          {
+            id: 11,
+            label: "三级 3-2-1",
+            parentId: 8
+          },
+          {
+            id: 12,
+            label: "三级 3-2-2",
+            parentId: 8
+          },
+          {
+            id: 13,
+            label: "三级 3-2-3",
+            parentId: 8
+          }
+        ]
+      }
+    ]
+  }
+];
+ newData =  []
+//处理数据
+dealData(){
+  const data = this.data;
+  //重置树形数据为平常数据
+  const data1 = this.resetData(data);
+  //重置平常数据为树形数据、
+  const data2 = data.filter(item => {
+    return item.parentId === null;
+  })
+  const finallyData = this.dealDataForTree(data1,data2);
+  this.data = finallyData;
+}
+resetData(data){
+  let arr = [];
+  let arr1 = [];
+  data.forEach(item => {
+    if(item.children){
+      const data = this.resetData(item.children);
+      for(let a of data){
+        arr1.push(a);
+      }
+    }
+    arr.push(item);
+  });
+  arr = [...arr,...arr1];
+  console.log(arr);
+  const arr2 = arr.map((item) => {
+    delete item.children;
+    return item;
+  })
+  return arr2;
+}
+//处理数据为树形数据
+dealDataForTree(data,data1){
+  for(let item of data){
+    for(let a of data){
+      if(a.parentId === item.id){
+        if(item.children){
+          item.children.push(a);
+        }else{
+          item.children = [];
+          item.children.push(a);
+        }
+      }
+    }
+  }
+  for(let i = 0; i < data1.length; i++){
+    for(let a = 0; a < data.length; a++){
+      if(data[a].id === data1[i].id){
+        data1[i] = Object.assign(data[a],data1[i]);
+      }
+    }
+  }
+  return data1;
+}
+//=================================================end==========================================
