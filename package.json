@@ -12,7 +12,7 @@
     "@types/qs": "^6.5.1",
     "animate.css": "^3.7.0",
     "hotkeys-js": "^3.4.3",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.13",
     "uuid-v4": "^0.1.0",
     "vue": "^2.5.17",
     "vue-class-component": "^6.0.0",
