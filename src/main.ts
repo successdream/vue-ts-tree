@@ -42,5 +42,8 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   store,
+  data: {
+    a: 1
+  },
   render: h => h(App)
-}).$mount('#app').$mount('#app').$axios.defaults.baseURL='/api'
+}).$mount('#app').$axios.defaults.baseURL='/api'

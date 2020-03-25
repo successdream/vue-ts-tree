@@ -14,6 +14,17 @@
     </transition>
     <button @click="closeOrOpen" out-in>{{val}}</button>
     <input v-focus>
+    <!-- <todo-list >
+  <template >
+    <span v-if="todo.isComplete">✓</span>
+    {{ todo.text }}
+  </template>
+</todo-list> -->
+    <renderJsxChild v-bind:todos="todos">
+        <template scope ="{ todo }">
+         {{ todo.text }}
+        </template>
+    </renderJsxChild>
   </div>
 </template>
 
@@ -42,8 +53,23 @@ Vue.directive('focus', {
   }
 })
 export default class renderJsx extends Vue {
+  // user={
+  //   number: 'number'
+  // }
+  slotProps = 'abcd'
   show = true;
   val = 'on';
+  todos = [
+    {
+      text: 1
+    },
+        {
+      text: 2
+    },
+        {
+      text: 3
+    },
+  ]
   closeOrOpen(){
     if(this.val==='on') this.val='off'
     else this.val='on'

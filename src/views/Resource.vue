@@ -17,7 +17,6 @@ import { Component, Vue, Mixins } from "vue-property-decorator";
 import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
 import ResourceChild from "@/components/ResourceChild.vue";
 import buttons from "@/components/button.vue";
-import {MyMixin} from '../../api/mixinMethod';
 Vue.component('button-counter', {
   data: function () {
     return {
@@ -30,10 +29,9 @@ Vue.component('button-counter', {
   components: {
     ResourceChild,
     buttons
-  },
-  mixins:[MyMixin]
+  }
 })
-export default class Resource extends  Mixins(MyMixin){
+export default class Resource extends Vue{
   data = [
     { id: 1, name: "办公管理", pid: 0 },
     { id: 2, name: "请假申请", pid: 1 },

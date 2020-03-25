@@ -43,7 +43,7 @@ export default class Login extends Vue {
     if( fileItem === null) return;
   
     const formData  = new FormData();
-    formData.append("file", fileItem.files[0]);
+    formData.append("file", fileItem && (fileItem as any).files ? (fileItem as any).files[0] : '');
     formData.append("tagIds",'[]');
     formData.append("creatorId", '5c984456d488e2004988a986');
     axios.defaults.headers.common['Authorization'] = 'Bearer 575a71fa30685232fc3f3dc99ee7ef5f6d087028';

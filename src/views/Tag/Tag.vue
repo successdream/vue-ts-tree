@@ -22,6 +22,7 @@
         </template>
       </el-table-column>
     </el-table>
+
     <TagController ref='adel' v-on:echo="echo"></TagController>
   </div>
 </template>
