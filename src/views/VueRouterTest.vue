@@ -13,7 +13,6 @@ import { Upload } from 'element-ui';
 @Component({
 })
 export default class VueRouterTest extends Vue {
-
   //按钮点击
   /* 
    formData用于上传图片
@@ -28,7 +27,6 @@ export default class VueRouterTest extends Vue {
   // async btnClick(){
   //   const fileItem = document.querySelector('#fileElem');
   //   if( fileItem === null) return;
-  
   //   const formData  = new FormData();
   //   formData.append("file", fileItem && (fileItem as any).files ? (fileItem as any).files[0] : '');
   //   formData.append("tagIds",'[]');

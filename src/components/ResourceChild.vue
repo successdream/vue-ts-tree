@@ -16,6 +16,7 @@ export default class Resource extends Vue {
   //   { id: 6, name: "权限管理", pid: 5 },
   //   { id: 7, name: "用户角色", pid: 6 },
   //   { id: 8, name: "菜单设置", pid: 6 }
+  
   // ];
   // renderData: any[] = [];
   // isTriangle: boolean = true;
