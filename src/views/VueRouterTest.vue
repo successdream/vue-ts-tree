@@ -1,20 +1,7 @@
-<template>
-  <div>
-    <!-- <input multiple id="fileElem" type="file" @change="handFile"  style="display:none" accept="image/*">
-    <label for="fileElem">Select some files</label>
-    <button class="btn" @click="btnClick">按钮</button>
-    <div id="content">
-
-    </div> -->
-    <form action="demo_form.asp" id="form" method="post">
-    First name:<br>
-    <input type="text" name="firstname" value="Mickey"><br>
-    Last name:<br>
-    <input type="text" name="lastname" value="Mouse"><br><br>
-    <input type="submit" value="提交">
-</form>
-<button @lick="anniuTIjiao">按钮</button>
-  </div>
+<template lang="pug">
+    el-select(v-model="value" multiple filterable remote reserve-keyword placeholder="请输入关键词" 
+    :remote-method="remoteMethod" :loading="loading" style="margin-top: 100px;" :default-first-option="true")
+      el-option(v-for="item in options" :key="item.value" :label="item.label" :value="item.value")
 </template>
 
 <script lang='ts'>
@@ -25,7 +12,7 @@ import { Upload } from 'element-ui';
 
 @Component({
 })
-export default class Login extends Vue {
+export default class VueRouterTest extends Vue {
 
   //按钮点击
   /* 
@@ -38,26 +25,26 @@ export default class Login extends Vue {
    因为权限控制，设置Authorization,
    随图片一起上传到的数据，可以一起appendforData里面
   */
-  async btnClick(){
-    const fileItem = document.querySelector('#fileElem');
-    if( fileItem === null) return;
+  // async btnClick(){
+  //   const fileItem = document.querySelector('#fileElem');
+  //   if( fileItem === null) return;
   
-    const formData  = new FormData();
-    formData.append("file", fileItem && (fileItem as any).files ? (fileItem as any).files[0] : '');
-    formData.append("tagIds",'[]');
-    formData.append("creatorId", '5c984456d488e2004988a986');
-    axios.defaults.headers.common['Authorization'] = 'Bearer 575a71fa30685232fc3f3dc99ee7ef5f6d087028';
-    const res = axios.post('main/upload',formData,{headers: {'Content-Type': 'multipart/form-data'}})
-    // // const res = await axios({
-    // //   method:'post',
-    // //   url:'/main/123',
-    // //   params:{'a':1},
-    // //   data:{
-    // //     'a':1
-    // //   }
-    // // })
-    // console.log(res);
-  }
+  //   const formData  = new FormData();
+  //   formData.append("file", fileItem && (fileItem as any).files ? (fileItem as any).files[0] : '');
+  //   formData.append("tagIds",'[]');
+  //   formData.append("creatorId", '5c984456d488e2004988a986');
+  //   axios.defaults.headers.common['Authorization'] = 'Bearer 575a71fa30685232fc3f3dc99ee7ef5f6d087028';
+  //   const res = axios.post('main/upload',formData,{headers: {'Content-Type': 'multipart/form-data'}})
+  //   // // const res = await axios({
+  //   // //   method:'post',
+  //   // //   url:'/main/123',
+  //   // //   params:{'a':1},
+  //   // //   data:{
+  //   // //     'a':1
+  //   // //   }
+  //   // // })
+  //   // console.log(res);
+  // }
   //文件点击
   // fileSelect(e){
   //   const fileElem = document.getElementById("fileElem");
@@ -66,11 +53,11 @@ export default class Login extends Vue {
   //  }
   //  e.preventDefault(); // 避免导航到 "#"
   // }
-  anniuTIjiao(){
-    alert(666)
-    const from = document.getElementById('form');
-    console.dir(from)
-  }
+  // anniuTIjiao(){
+  //   alert(666)
+  //   const from = document.getElementById('form');
+  //   console.dir(from)
+  // }
  //处理文件
 //  handFile(data){
 //   const filesList = data.target.files;
@@ -95,6 +82,53 @@ export default class Login extends Vue {
 
 //   }
 //  }
+  private value = '';
+  private loading = false;
+  private options: any[] = [];
+  private list: any[] = [];
+  private states: string[] =  
+    ["Alabama", "Alaska", "Arizona",
+    "Arkansas", "California", "Colorado",
+    "Connecticut", "Delaware", "Florida",
+    "Georgia", "Hawaii", "Idaho", "Illinois",
+    "Indiana", "Iowa", "Kansas", "Kentucky",
+    "Louisiana", "Maine", "Maryland",
+    "Massachusetts", "Michigan", "Minnesota",
+    "Mississippi", "Missouri", "Montana",
+    "Nebraska", "Nevada", "New Hampshire",
+    "New Jersey", "New Mexico", "New York",
+    "North Carolina", "North Dakota", "Ohio",
+    "Oklahoma", "Oregon", "Pennsylvania",
+    "Rhode Island", "South Carolina",
+    "South Dakota", "Tennessee", "Texas",
+    "Utah", "Vermont", "Virginia",
+    "Washington", "West Virginia", "Wisconsin",
+    "Wyoming"];
+  private mounted(){
+    this.first();
+  }
+  
+  private first() {
+    this.list = this.states.map(item => {
+      return { value: `value:${item}`, label: `label:${item}` };
+    });
+  }
+
+  private remoteMethod(query: string) {
+    console.log(query, '666')
+        if (query !== '') {
+          this.loading = true;
+          setTimeout(() => {
+            this.loading = false;
+            this.options = this.list.filter(item => {
+              return item.label.toLowerCase()
+                .indexOf(query.toLowerCase()) > -1;
+            });
+          }, 200);
+        } else {
+          this.options = [];
+        }
+      }
 }
 </script>
 
