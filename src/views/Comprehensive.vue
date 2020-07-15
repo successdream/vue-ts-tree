@@ -1,58 +1,14 @@
 <template>
   <div id="Comprehensive" style="position:absolute;top:80px">
-    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-      <el-form-item label="活动名称" prop="name">
-        <el-input v-model="ruleForm.name"></el-input>
-      </el-form-item>
-      <el-form-item label="活动区域" prop="region">
-        <el-select v-model="ruleForm.region" placeholder="请选择活动区域">
-          <el-option label="区域一" value="shanghai"></el-option>
-          <el-option label="区域二" value="beijing"></el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="活动时间" required>
-        <el-col :span="11">
-          <el-form-item prop="date1">
-            <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date1" style="width: 100%;"></el-date-picker>
-          </el-form-item>
-        </el-col>
-        <el-col class="line" :span="2">-</el-col>
-        <el-col :span="11">
-          <el-form-item prop="date2">
-            <el-time-picker placeholder="选择时间" v-model="ruleForm.date2" style="width: 100%;"></el-time-picker>
-          </el-form-item>
-        </el-col>
-      </el-form-item>
-      <el-form-item label="即时配送" prop="delivery">
-        <el-switch v-model="ruleForm.delivery"></el-switch>
-      </el-form-item>
-      <el-form-item label="活动性质" prop="type">
-        <el-checkbox-group v-model="ruleForm.type">
-          <el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>
-          <el-checkbox label="地推活动" name="type"></el-checkbox>
-          <el-checkbox label="线下主题活动" name="type"></el-checkbox>
-          <el-checkbox label="单纯品牌曝光" name="type"></el-checkbox>
-        </el-checkbox-group>
-      </el-form-item>
-      <el-form-item label="特殊资源" prop="resource">
-        <el-radio-group v-model="ruleForm.resource">
-          <el-radio label="线上品牌商赞助"></el-radio>
-          <el-radio label="线下场地免费"></el-radio>
-        </el-radio-group>
-      </el-form-item>
-      <el-form-item label="活动形式" prop="desc">
-        <el-input type="textarea" v-model="ruleForm.desc"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
-        <el-button @click="resetForm('ruleForm')">重置</el-button>
-      </el-form-item>
-    </el-form>
+    我是Comprehensive
+    <el-input :value="input" @input="inputValue" ref="aaa"></el-input>
+    <div v-show="false" > {{ inputValue }} </div>
+    <div v-if="show">超过了十个字</div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 // import  ElForm  from 'element-ui'
 import { ElForm} from 'element-ui/types/form'
 // const uuid=require('uuid-v4');
@@ -64,6 +20,56 @@ export default class comprehensive extends Vue{
   public $refs!: {
     ruleForm: ElForm,
   }
+  private input = '';
+  @Watch('input', { deep: true} )
+  // inputChange(value: any) {
+  //   // this.inputValue = value;;
+  //   console.log(value, '000')
+  //   if( value.length > 3 ) {
+  //     this.show = true;
+  //     const val = this.input.slice(0, 3);
+  //     console.log(val, 'val123')
+  //     this.input = val;
+  //     // this.$forceUpdate()
+  //   }
+  // }
+  private inputValue(value: any) {
+    console.log(value, 'value666s=')
+    if(value.length > 3) {
+      const a = value.slice(0, 3);
+      console.log(a, '11')
+      this.input = a;
+      // this.$refs.aaa.value = a;
+      
+    } else {
+      console.log(value, 'value666')
+      this.input = value
+      // this.$refs.aaa.value = value;
+
+    }
+  }
+  // get inputValue() {
+  //   console.log(this.input, 'get')
+  //   return this.input;
+  // }
+  // set inputValue (value: any) {
+  //   console.log(value.length, 'len', value)
+  //   if(value.length > 3) {
+  //     console.log('大雨10', value)
+
+  //     const item = value.slice(0,3);
+  //     this.show = true;
+  //     console.log(item, 'item666')
+  //     this.input = item;
+  //     console.log(this.input, 'input')
+  //   } else {
+  //     console.log('小雨10', value)
+  //     this.input = value;
+  //   }
+
+    
+  //   // console.log(13)
+  // }
   private ruleForm = {
     name: '',
     region: '',
@@ -84,12 +90,59 @@ export default class comprehensive extends Vue{
     resource: [ { required: true, message: '年龄不能为空'} ],
     desc: [ { required: true, message: '年龄不能为空'} ],
   }
+  private that = this;
+  private show = false;
+
+
   private numberValidateForm = {
     age: ''
   }
-  mounted() {
 
+
+
+  private handler = {
+    set(obj:any, prop: any, value: any) {
+      console.log(obj, 'handle')
+      // console.log('我执行了')
+      
+      if(prop === 'inputValue' && value.length > 10) {
+        const str = new String(value + '')
+        const item = str.slice(0, 10);
+        // console.log(this, 'this')
+        // this.inputValue.
+        // tha.tahtt.$set(that.that.inputValue,)
+        // this.show = true;
+        // console.log(item, 'item111')
+        obj[prop]  = item
+        obj.$set(obj, 'inputValue', item)
+        obj.show = true;
+
+        return true;
+      }
+      // @ts-ignore
+      // obj[prop]  = value
+      obj.$set(obj, 'inputValue', value)
+
+      return true;
+    }
   }
+
+  mounted() {
+    // this.testPoxy();
+  }
+
+
+
+  // private testPoxy() {
+  //   console.log(this, 'value-testPoxy')
+  //   const that = this;
+  //  const a =  new Proxy(that, this.handler)
+  
+  //   // console.log(a, '999')
+  //   // this.inputValue = a;
+  //   // console.log(this.inputValue.value)
+    
+  // }
 
   private validatorName(rule: any, value: string, callback: any) {
     if (value === '') {

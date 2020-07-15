@@ -1,10 +1,11 @@
 <template>
   <div id="User" style="position:absolute;top:80px">
-     <div class="display:flex;">
+     <!-- <div class="display:flex;">
        <span>我是UserSlot组件</span>
        <span>我是UserCHild组件</span>
-       <!-- <component></component> -->
-     </div>
+       <component></component>
+     </div> -->
+     <flowChart></flowChart>
   </div>
 </template>
 
@@ -12,6 +13,7 @@
 
 import { Component, Vue, Mixins } from "vue-property-decorator";
 import hotkeys from "hotkeys-js";
+// import flowChart from '../flowChart/DemoFroTest.vue';
 // import UserSlot from "./UserSlot.vue";
 // import UserChiild from "./UserChiild.vue";
 const uuidv4 = require("uuid/v4");
@@ -32,8 +34,11 @@ export default Vue.extend({
 
     console.log(hotkeys.getScope());
   },
-  methods: {},
+  methods: {
+    
+  },
   components: {
+    // flowChart
   },
   //必须以空格间隔
   beforeDestroy() {

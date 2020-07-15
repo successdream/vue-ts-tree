@@ -6,7 +6,7 @@ import axios from 'axios';
 Vue.use(Router)
 
 let router=new Router ({
-  mode: 'history',
+  mode: 'hash',
   ...routes
 })
 

@@ -25,18 +25,18 @@ export default{
           component: Home,
           title:"主页",
           children:[
-            {
-              path:'task',
-              component:Task,
-              name:'task',
-              title:'任务',
-              icon:'iconfont icon-ziyouanpai',
-              children:[
-                {
-                  path: '/task/test'
-                }
-              ]
-            },
+            // {
+            //   path:'task',
+            //   component:Task,
+            //   name:'task',
+            //   title:'任务',
+            //   icon:'iconfont icon-ziyouanpai',
+            //   children:[
+            //     {
+            //       path: '/task/test'
+            //     }
+            //   ]
+            // },
             {path:'user',component:User,name:'user',title:'用户',icon:'iconfont icon-tupian'},
             {path:'comprehensive',component:Comprehensive,name:'task',title:'任务',icon:'iconfont icon-zhinengyouhua'},
             // {path:'resource',component:Resource,name:'resource',title:'资源',icon:'iconfont icon-zhinengyouhua'},
