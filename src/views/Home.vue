@@ -4,7 +4,7 @@
     <div class="nav-menu">
       <div class="nav-left">
         我是home页面
-        1版
+        2版
       </div>
       <div class="nav-center">
         <el-menu
