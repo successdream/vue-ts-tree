@@ -13,7 +13,7 @@
     "@types/qs": "^6.5.1",
     "animate.css": "^3.7.0",
     "hotkeys-js": "^3.4.3",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "pug": "^2.0.4",
     "pug-plain-loader": "^1.0.0",
     "uuid-v4": "^0.1.0",
