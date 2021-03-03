@@ -14,7 +14,7 @@
     "animate.css": "^3.7.0",
     "hotkeys-js": "^3.4.3",
     "lodash": "^4.17.15",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "pug-plain-loader": "^1.0.0",
     "uuid-v4": "^0.1.0",
     "vue": "^2.5.17",
