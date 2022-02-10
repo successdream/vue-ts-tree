@@ -37,7 +37,7 @@
     "element-ui": "^2.4.11",
     "html2canvas": "^1.0.0-alpha.12",
     "moment": "^2.23.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "qs": "^6.6.0",
     "sass-loader": "^7.0.1",
     "typescript": "^3.0.0",
