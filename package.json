@@ -38,7 +38,7 @@
     "html2canvas": "^1.0.0-alpha.12",
     "moment": "^2.23.0",
     "node-sass": "^4.13.1",
-    "qs": "^6.6.0",
+    "qs": "^6.6.1",
     "sass-loader": "^7.0.1",
     "typescript": "^3.0.0",
     "vue-template-compiler": "^2.5.17",
